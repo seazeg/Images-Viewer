@@ -22,13 +22,6 @@ function readFileList(path, filesList) {
 
 }
 var getFiles = {
-    //获取文件夹下的所有文件
-    getFileList: function (path) {
-        var filesList = [];
-        readFileList(path, filesList);
-        return filesList;
-    },
-    //获取文件夹下的所有图片
     getImageFiles: function (path) {
         var imageList = [];
 
@@ -39,17 +32,6 @@ var getFiles = {
         });
         return imageList;
 
-    },
-    //获取文件夹下所有非图片的文件 2018年8月18日 19:15:13更新
-    getTxtList: function (path) {
-
-
-        return this.getFileList(path).filter((item) => {
-            var ms = image(fs.readFileSync(item.path + item.filename));
-
-            return !ms.mimeType
-        });
-
     }
 };
 
@@ -57,3 +39,6 @@ var getFiles = {
 // getFiles.getImageFiles("./public/");
 // //获取文件夹下的所有文件
 // getFiles.getFileList("./public/");
+
+
+export default getFiles

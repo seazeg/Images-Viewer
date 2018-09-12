@@ -4,7 +4,7 @@ import {
   ipcMain,
   Tray
 } from 'electron'
-
+import getFiles from './getImages'
 
 /**
  * Set `__static` path to static files in production
@@ -55,6 +55,11 @@ ipcMain.on('max', e=> {
   }
 });
 ipcMain.on('close', e => mainWindow.close());
+
+
+
+// console.log(getFiles.getImageFiles());
+
 
 app.on('ready', createWindow)
 
