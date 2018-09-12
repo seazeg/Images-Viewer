@@ -50,6 +50,9 @@
   .viewer-list{
     width:93px!important;
   }
+  .viewer-canvas{
+    top:25px!important;
+  }
 </style>
 
 <style scoped>
