@@ -1,4 +1,10 @@
-import { app, BrowserWindow } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Tray
+} from 'electron'
+
 
 /**
  * Set `__static` path to static files in production
@@ -9,18 +15,26 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
+const winURL = process.env.NODE_ENV === 'development' ?
+  `http://localhost:9080` :
+  `file://${__dirname}/index.html`
 
-function createWindow () {
+function createWindow() {
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
+    height: 750,
+    width: 1200,
+    // maxHeight: 750,
+    // maxWidth: 1300,
+    // minHeight: 750,
+    // minWidth: 1300,
     useContentSize: true,
-    width: 1000
+    resizable: true,
+    fullscreen: false,
+    frame: false,
+    titleBarStyle: 'customButtonsOnHover'
   })
 
   mainWindow.loadURL(winURL)
@@ -28,7 +42,19 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
 }
+
+// 利用ipc让html标签获取主进程的方法,最小化,最大化,关闭
+ipcMain.on('min', e => mainWindow.minimize());
+ipcMain.on('max', e=> {
+  if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+  } else {
+      mainWindow.maximize()
+  }
+});
+ipcMain.on('close', e => mainWindow.close());
 
 app.on('ready', createWindow)
 

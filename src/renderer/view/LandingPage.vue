@@ -31,7 +31,11 @@
           zoomRatio: 0.5,
           interval: 3000,
           minZoomRatio: 0.25,
-          maxZoomRatio: 2
+          maxZoomRatio: 2,
+          button:false,
+          ready:function(){
+             document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action','')
+          }
         });
          _this.$refs.img[0].click();
       }

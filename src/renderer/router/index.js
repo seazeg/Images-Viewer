@@ -3,16 +3,15 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+const LandingPage = resolve => require(['@/view/LandingPage'], resolve);
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'LandingPage',
-      component: require('@/view/LandingPage').default
-    },
-    {
-      path: '*',
-      redirect: '/'
-    }
-  ]
+  routes: [{
+    path: '/',
+    name: 'LandingPage',
+    component: LandingPage
+  },{
+    path: '*',
+    redirect: '/'
+  }]
 })

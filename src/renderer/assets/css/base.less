@@ -1,0 +1,146 @@
+@charset "UTF-8";
+@import 'theme.config.less';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td,
+a:visited,
+a {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑", "Helvetica Neue", "Montserrat", "Hiragino Sans GB", "LiHei Pro", Arial, sans-serif;
+  outline: none;
+  color: @font_color;
+}
+
+textarea {
+  color: @border_color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: couriernew, courier, monospace;
+}
+
+small {
+  font-size: 12px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -o-transition: all .2s linear;
+}
+
+a:hover {
+  text-decoration: none;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -o-transition: all .2s linear;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+legend {
+  color: #000;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+
+textarea,
+input {
+  resize: none;
+  outline: none
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity .1s ease;
+}
+
+.component-fade-enter,
+.component-fade-leave-active {
+  opacity: 0;
+}
+
+.el-notification__content p {
+  color: @deputy_color  !important
+}
+
+.el-message {
+  top: 50px !important;
+}
