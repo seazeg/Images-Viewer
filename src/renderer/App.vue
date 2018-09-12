@@ -5,7 +5,7 @@
       <!-- <layout-sidetools></layout-sidetools> -->
       <layout-container>
         <transition name="component-fade" mode="out-in">
-          <!-- <router-view></router-view> -->
+          <router-view></router-view>
         </transition>
       </layout-container>
     </div>

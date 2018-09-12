@@ -46,6 +46,10 @@ code {
     background: @deputy_color;
     border-bottom: 1px solid @border_color;
     height: 40px;
+    position: absolute;
+    top:0;
+    width: 100%;
+    z-index: 9999;
 }
 
 .layout-header .title {
@@ -96,8 +100,9 @@ code {
 .layout-section {
     display: flex;
     border-top: 1px solid @shadow_color;
-    height: 100vh;
-    width: 100vw;
+    // height: 100vh;
+    // width: 100vw;
+    margin-top:40px;
 }
 
 //左侧工具栏

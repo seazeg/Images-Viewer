@@ -1,10 +1,8 @@
 <template>
   <div id="photos" class="photos-box" style="width:100%;">
-
     <div class="item" v-for="item in data">
       <img ref="img" :src="item.src" v-show="item.show" :alt="item.name" @load="init()">
     </div>
-
   </div>
 </template>
 
@@ -21,6 +19,9 @@
         }, {
           name: "p2",
           src: "../../../static/dyQ13p-ip9lZ2nT3cS122-la.jpg"
+        }, {
+          name: "p3",
+          src: "../../../static/timg.jpg"
         }]
       }
     },
@@ -32,12 +33,12 @@
           interval: 3000,
           minZoomRatio: 0.25,
           maxZoomRatio: 2,
-          button:false,
-          ready:function(){
-             document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action','')
+          button: false,
+          ready: function () {
+            document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '')
           }
         });
-         _this.$refs.img[0].click();
+        _this.$refs.img[0].click();
       }
     },
     mounted() {
@@ -45,6 +46,11 @@
     }
   }
 </script>
+<style>
+  .viewer-list{
+    width:93px!important;
+  }
+</style>
 
 <style scoped>
   @import '/node_modules/viewerjs/dist/viewer.min.css';
@@ -74,4 +80,6 @@
     transition: all 0.2s;
     z-index: 10;
   }
+
+
 </style>
