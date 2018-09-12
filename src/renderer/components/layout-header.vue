@@ -17,11 +17,11 @@
         name: "layout-header",
         methods: {
             winHandle(type) {
-                ipc.send(type);     
+                ipc.send(type);
             }
         },
         mounted() {
-          
+
         }
     }
 </script>
