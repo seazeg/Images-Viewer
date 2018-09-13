@@ -1,7 +1,7 @@
 <template>
   <div id="photos" class="photos-box" style="width:100%;">
     <div class="item" v-for="item in data">
-      <img ref="img" :src="item.src" v-show="item.show" :alt="item.name" @load="init()">
+      <img ref="img" :src="item" v-show="isshow"  @load="init()">
     </div>
   </div>
 </template>
@@ -9,20 +9,15 @@
 <script>
   // import jquery from 'jquery'
   import viewerjs from 'viewerjs'
+  const {
+    ipcRenderer: ipc
+  } = require('electron');
   export default {
     name: 'LandingPage',
     data() {
       return {
-        data: [{
-          name: "p1",
-          src: "../../../static/0fe34ebe6f7e459b7792fd35af6c4f3c.jpg"
-        }, {
-          name: "p2",
-          src: "../../../static/dyQ13p-ip9lZ2nT3cS122-la.jpg"
-        }, {
-          name: "p3",
-          src: "../../../static/timg.jpg"
-        }]
+        data: [],
+        isshow:false
       }
     },
     methods: {
@@ -42,16 +37,26 @@
       }
     },
     mounted() {
+      var _this = this
+      ipc.send('images-message');
+      ipc.on('images-reply', function (event, arg) {
+        var tmp = [];
+        for(var i in arg){
+          tmp.push(arg[i].replace(/\\/g,"/"));
+        }
+        _this.data = tmp
+      });
 
     }
   }
 </script>
 <style>
-  .viewer-list{
-    width:93px!important;
+  .viewer-list {
+    width: 93px !important;
   }
-  .viewer-canvas{
-    top:25px!important;
+
+  .viewer-canvas {
+    top: 25px !important;
   }
 </style>
 
@@ -83,6 +88,4 @@
     transition: all 0.2s;
     z-index: 10;
   }
-
-
 </style>
