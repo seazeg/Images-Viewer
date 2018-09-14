@@ -42,8 +42,9 @@
       ipc.on('images-reply', function (event, arg) {
         var tmp = [];
         for(var i in arg){
-          tmp.push(arg[i].replace(/\\/g,"/"));
+          tmp.push('file:///' + arg[i].replace(/\\/g,"/"));
         }
+        console.log(tmp);
         _this.data = tmp
       });
 
@@ -51,9 +52,9 @@
   }
 </script>
 <style>
-  .viewer-list {
+  /* .viewer-list {
     width: 93px !important;
-  }
+  } */
 
   .viewer-canvas {
     top: 25px !important;

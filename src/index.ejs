@@ -10,7 +10,7 @@
       </script>
     <% } %>
   </head>
-  <body>
+  <body id="dropBox">
     <div id="app"></div>
     <!-- Set `__static` path to static files in production -->
     <script>
@@ -18,5 +18,43 @@
     </script>
 
     <!-- webpack builds are automatically injected -->
+
+    <script>
+      const {
+      ipcRenderer: ipc
+      } = require('electron');
+      let dropBox;
+  
+      window.onload = function () {
+        dropBox = document.getElementById("dropBox");
+        dropBox.ondragenter = ignoreDrag;
+        dropBox.ondragover = ignoreDrag;
+        dropBox.ondrop = drop;
+      }
+  
+      function ignoreDrag(e) {
+        //因为我们在处理拖放，所以应该确保没有其他元素会取得这个事件
+        e.stopPropagation();
+        e.preventDefault();
+        console.log("空中");
+      }
+  
+      function drop(e) {
+        //取消事件传播及默认行为
+        e.stopPropagation();
+        e.preventDefault();
+        let files = e.dataTransfer.files;
+        let obj = {
+          fileName:e.dataTransfer.files[0].name,
+          filePath:e.dataTransfer.files[0].path.replace(/\\/g,"/").replace(e.dataTransfer.files[0].name,""),
+          fileType:e.dataTransfer.files[0].type,
+          fileSize:e.dataTransfer.files[0].size
+        }
+      console.log(obj.filePath);
+        ipc.send('files-message',JSON.stringify(obj));
+
+      }
+  
+    </script>
   </body>
 </html>

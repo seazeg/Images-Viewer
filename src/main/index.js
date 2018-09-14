@@ -20,9 +20,6 @@ const winURL = process.env.NODE_ENV === 'development' ?
   `file://${__dirname}/index.html`
 
 
-
-
-
 function createWindow(e) {
   /**
    * Initial window options
@@ -67,6 +64,7 @@ ipcMain.on('close', e => mainWindow.close());
 ipcMain.on('images-message', function(event, arg) {
   event.sender.send('images-reply', fileList);
 });
+
 
 
 
