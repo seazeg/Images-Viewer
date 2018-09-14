@@ -4,7 +4,7 @@ import {
   ipcMain
 } from 'electron'
 
-let fileList = require('./core').fileList;
+let core = require('./core');
 
 /**
  * Set `__static` path to static files in production
@@ -33,7 +33,7 @@ function createWindow(e) {
     // minWidth: 1300,
     useContentSize: true,
     resizable: true,
-    fullscreen: true,
+    fullscreen: false,
     frame: false,
     webPreferences: {
       webSecurity: false
@@ -41,12 +41,12 @@ function createWindow(e) {
     // titleBarStyle: 'customButtonsOnHover'
   })
 
+
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-
 }
 
 // 利用ipc让html标签获取主进程的方法,最小化,最大化,关闭
@@ -61,12 +61,9 @@ ipcMain.on('max', e => {
 ipcMain.on('close', e => mainWindow.close());
 
 //消息通信,将图片数组传到渲染模块
-ipcMain.on('images-message', function(event, arg) {
-  event.sender.send('images-reply', fileList);
-});
-
-
-
+// ipcMain.on('images-message', function(event, arg) {
+//   event.sender.send('images-reply', fileList);
+// });
 
 app.on('ready', createWindow)
 

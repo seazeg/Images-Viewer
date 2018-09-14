@@ -33,19 +33,19 @@
             document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '')
           }
         });
+        
         _this.$refs.img[0].click();
       }
     },
     mounted() {
       var _this = this
-      ipc.send('images-message');
-      ipc.on('images-reply', function (event, arg) {
+      ipc.on('files-reply', function (event, arg) {
         var tmp = [];
         for(var i in arg){
           tmp.push('file:///' + arg[i].replace(/\\/g,"/"));
         }
-        console.log(tmp);
-        _this.data = tmp
+        _this.data = tmp;
+        _this.$forceUpdate();
       });
 
     }
