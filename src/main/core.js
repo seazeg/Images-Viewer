@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const dirpath = require('dir').dirpath;
+const dirpath = require('./dir').dirpath;
 
 
 let filePath = path.resolve(dirpath);

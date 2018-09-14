@@ -36,7 +36,7 @@ function createWindow(e) {
     // minWidth: 1300,
     useContentSize: true,
     resizable: true,
-    fullscreen: false,
+    fullscreen: true,
     frame: false,
     webPreferences: {
       webSecurity: false
