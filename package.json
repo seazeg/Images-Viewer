@@ -1,9 +1,9 @@
 {
   "name": "image-viewer",
-  "productName": "image-viewer",
-  "version": "0.0.1",
+  "productName": "ImageViewer",
+  "version": "1.0.0",
   "author": "Evan.G",
-  "description": "An electron-vue project",
+  "description": "一个自制的Mac图片浏览器",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
