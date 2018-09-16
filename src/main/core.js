@@ -6,11 +6,11 @@ const {
 } = require('electron');
 
 
-ipcMain.on('files-message', function (event, arg) {
+ipcMain.on('files-message', function (e, arg) {
     let filePath = path.resolve(dirpath);
     filePath = (JSON.parse(arg)).filePath;
     fileDisplay(filePath, function (fileList) {
-        event.sender.send('files-reply', fileList);
+        e.sender.send('files-reply', fileList);
     });   
 });
 
@@ -28,7 +28,7 @@ function fileDisplay(filePath, callback) {
                 var filedir = path.join(filePath, filename);
                 var isImg = function () {
                     var res = false;
-                    if ((filename.split(".")[1]) == 'png' || (filename.split(".")[1]) == 'jpeg' || (filename.split(".")[1]) == 'jpg' || (filename.split(".")[1]) == 'gif') {
+                    if ((filename.split(".")[1]) == 'png' || (filename.split(".")[1]) == 'jpeg' || (filename.split(".")[1]) == 'jpg' || (filename.split(".")[1]) == 'gif'||(filename.split(".")[1]) == 'ico') {
                         res = true
                     }
                     return res
