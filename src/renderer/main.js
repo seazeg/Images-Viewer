@@ -5,7 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 import './assets/fonts/iconfont.css';
+import '../../node_modules/viewerjs/dist/viewer.min.css'
 import './components/index';
+
 
 Vue.prototype.jquery = $
 

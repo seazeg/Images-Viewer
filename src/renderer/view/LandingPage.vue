@@ -1,29 +1,29 @@
 <template>
   <div id="photos" class="photos-box" style="width:100%;">
     <div class="item" v-for="item in data">
-      <img ref="img" :src="item" v-show="isshow"  @load="init()">
+      <img ref="img" :src="item" v-show="isshow" @load="init()">
     </div>
   </div>
 </template>
 
 <script>
-  // import jquery from 'jquery'
   import viewerjs from 'viewerjs'
   const {
     ipcRenderer: ipc
   } = require('electron');
+  var viewer = null;
   export default {
     name: 'LandingPage',
     data() {
       return {
         data: [],
-        isshow:false
+        isshow: false
       }
     },
     methods: {
       init() {
         var _this = this;
-        var viewer = new viewerjs(document.getElementById('photos'), {
+        viewer = new viewerjs(document.getElementById('photos'), {
           zoomRatio: 0.5,
           interval: 3000,
           minZoomRatio: 0.25,
@@ -33,19 +33,28 @@
             document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '')
           }
         });
-        
+
         _this.$refs.img[0].click();
+      },
+      reset() {
+        if (document.getElementsByClassName('viewer-container').length > 0) {
+          document.getElementsByClassName('viewer-container')[0].parentNode.removeChild(document.getElementsByClassName(
+            'viewer-container')[0]);
+          viewer.destroy();
+        }
+
       }
     },
     mounted() {
       var _this = this
       ipc.on('files-reply', function (event, arg) {
         var tmp = [];
-        for(var i in arg){
-          tmp.push('file:///' + arg[i].replace(/\\/g,"/"));
+        for (var i in arg) {
+          tmp.push('file:///' + arg[i].replace(/\\/g, "/"));
         }
         _this.data = tmp;
-        _this.$forceUpdate();
+        _this.reset()
+
       });
 
     }
@@ -62,8 +71,6 @@
 </style>
 
 <style scoped>
-  @import '/node_modules/viewerjs/dist/viewer.min.css';
-
   #photos {
     width: 100%;
     height: 100%;
