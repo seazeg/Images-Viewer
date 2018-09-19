@@ -1,6 +1,6 @@
 {
   "name": "image-viewer",
-  "productName": "ImageViewer",
+  "productName": "GImageViewer",
   "version": "1.0.0",
   "author": "Evan.G",
   "description": "一个自制的Mac图片浏览器",
