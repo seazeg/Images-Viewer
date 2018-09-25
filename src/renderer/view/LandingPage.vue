@@ -32,7 +32,7 @@
           maxZoomRatio: 2,
           button: false,
           ready: function () {
-            document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '')
+            document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '');
           }
         });
 
@@ -47,7 +47,10 @@
 
       },
       open(){
-        ipc.send("open-message")
+        var _this = this;
+        _this.reset();
+        document.getElementById('logo').style.display = 'none';
+        ipc.send("open-message");
       }
     },
     mounted() {
