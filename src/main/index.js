@@ -60,10 +60,6 @@ ipcMain.on('max', e => {
 });
 ipcMain.on('close', e => mainWindow.close());
 
-//消息通信,将图片数组传到渲染模块
-// ipcMain.on('images-message', function(event, arg) {
-//   event.sender.send('images-reply', fileList);
-// });
 
 app.on('ready', createWindow)
 

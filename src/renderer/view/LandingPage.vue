@@ -1,5 +1,6 @@
 <template>
   <div id="photos" class="photos-box" style="width:100%;">
+    <div id="logo" @click="open()"></div>
     <div class="item" v-for="item in data">
       <img ref="img" :src="item" v-show="isshow" @load="init()">
     </div>
@@ -8,6 +9,7 @@
 
 <script>
   import viewerjs from 'viewerjs'
+  
   const {
     ipcRenderer: ipc
   } = require('electron');
@@ -43,6 +45,9 @@
           viewer.destroy();
         }
 
+      },
+      open(){
+        ipc.send("open-message")
       }
     },
     mounted() {
@@ -71,6 +76,18 @@
 </style>
 
 <style scoped>
+  #logo{
+    background:url('../assets/images/bg.jpg') no-repeat;
+    width:600px;
+    height:180px;
+    margin:0 auto;
+    position: relative;
+    top:50%;
+    margin-top:-90px;
+    cursor:pointer;
+
+
+  }
   #photos {
     width: 100%;
     height: 100%;
@@ -80,7 +97,7 @@
     right: 0;
     bottom: 0;
     overflow: auto;
-    background: #2f3238;
+    background: #292a2b;
   }
 
   #photos .item .tit {
