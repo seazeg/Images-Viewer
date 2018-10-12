@@ -26,11 +26,14 @@
       init() {
         var _this = this;
         viewer = new viewerjs(document.getElementById('photos'), {
-          zoomRatio: 0.5,
+          zoomRatio: 0.05,
           interval: 3000,
           minZoomRatio: 0.25,
           maxZoomRatio: 2,
           button: false,
+          title:function(e){
+            return decodeURIComponent(e.alt)
+          },
           ready: function () {
             document.getElementsByClassName('viewer-canvas')[0].setAttribute('data-viewer-action', '');
           }
@@ -43,6 +46,7 @@
           document.getElementsByClassName('viewer-container')[0].parentNode.removeChild(document.getElementsByClassName(
             'viewer-container')[0]);
           viewer.destroy();
+          document.getElementById('logo').style.display = 'block';
         }
 
       },
